@@ -1,5 +1,5 @@
 # SignalRLoggerDemo
-nuget install IVilson.Utils.Logger.SignalR
+Install-Package IVilson.Utils.Logger.SignalR
 
 ## 1.Server Side
 
