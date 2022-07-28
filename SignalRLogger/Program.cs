@@ -1,5 +1,4 @@
-using Microsoft.AspNetCore.SignalR;
-using SignalRLoggerDemo;
+using IVilson.Utils.Logger.SignalR;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -14,15 +13,18 @@ builder.Services.AddCors(p => p.AddPolicy("corsapp", builder =>
     builder.WithOrigins("https://localhost:44480").AllowAnyMethod().AllowAnyHeader().AllowCredentials();
 }));
 
+
+
 var app = builder.Build();
-var lf = app.Services.GetRequiredService<ILoggerFactory>();
-lf.AddProvider(new SignalRLoggerProvider(
-                    new SignalRLoggerConfiguration
-                    {
-                        ServiceProvider = app.Services,
-                        LogLevel = LogLevel.Information,
-                        GroupName = "LogMonitor"
-                    }));
+app.Services.AddSignalRLogger();
+//var lf = app.Services.GetRequiredService<ILoggerFactory>();
+//lf.AddProvider(new SignalRLoggerProvider(
+//                    new SignalRLoggerConfiguration
+//                    {
+//                        ServiceProvider = app.Services,
+//                        LogLevel = LogLevel.Information,
+//                        GroupName = "LogMonitor"
+//                    }));
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
@@ -47,6 +49,6 @@ app.MapControllerRoute(
 
 app.MapFallbackToFile("index.html");
 
-app.MapHub<LoggerHub>(LoggerHub.HubUrl);
+app.MapHub<SignalRLoggerHub>(SignalRLoggerHub.HubUrl);
 
 app.Run();

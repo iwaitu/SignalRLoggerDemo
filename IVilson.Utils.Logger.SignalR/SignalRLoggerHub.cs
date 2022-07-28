@@ -1,8 +1,8 @@
 ﻿using Microsoft.AspNetCore.SignalR;
 
-namespace SignalRLoggerDemo
+namespace IVilson.Utils.Logger.SignalR
 {
-    public class LoggerHub : Hub
+    public class SignalRLoggerHub : Hub
     {
         public const string HubUrl = "/loghub";
         public async Task Broadcast(string username, string message) => await Clients.All.SendAsync("Broadcast", username, message);

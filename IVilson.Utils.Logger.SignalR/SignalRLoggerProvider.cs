@@ -1,6 +1,7 @@
-﻿using System.Collections.Concurrent;
+﻿using Microsoft.Extensions.Logging;
+using System.Collections.Concurrent;
 
-namespace SignalRLoggerDemo
+namespace IVilson.Utils.Logger.SignalR
 {
     public class SignalRLoggerProvider : ILoggerProvider
     {

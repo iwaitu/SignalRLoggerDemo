@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.SignalR;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
 
-namespace SignalRLoggerDemo
+namespace IVilson.Utils.Logger.SignalR
 {
     public class SignalRLogger : ILogger
     {
@@ -29,8 +31,7 @@ namespace SignalRLoggerDemo
             {
                 try
                 {
-                    var hub = _config.ServiceProvider.GetRequiredService<IHubContext<LoggerHub>>();
-                    //this._config.HubContext?.Clients.Group(_config.GroupName).SendAsync("Broadcast",  $"{DateTimeOffset.UtcNow:T}-UTC : {formatter(state, exception)}");
+                    var hub = _config.ServiceProvider.GetRequiredService<IHubContext<SignalRLoggerHub>>();
                     hub?.Clients.Group(_config.GroupName).SendAsync("Broadcast", $"{DateTimeOffset.UtcNow:T}-UTC : {formatter(state, exception)}");
                 }
                 catch (Exception e){

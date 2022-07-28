@@ -1,6 +1,6 @@
-﻿using Microsoft.AspNetCore.SignalR;
+﻿using Microsoft.Extensions.Logging;
 
-namespace SignalRLoggerDemo
+namespace IVilson.Utils.Logger.SignalR
 {
     public class SignalRLoggerConfiguration
     {
