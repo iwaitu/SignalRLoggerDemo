@@ -17,6 +17,17 @@ app.MapHub<SignalRLoggerHub>(SignalRLoggerHub.HubUrl);
 app.Run();
 ```
 
+now you can use ILogger normally, example in controller 
+```c#
+public class HomeController : ControllerBase
+{
+    public class HomeController(ILogger<HomeController> logger)
+    {
+        logger.LogInformation("this is a test.");
+    }
+}
+```
+
 ## 2.React Client Side
 
 import signalr
@@ -24,7 +35,7 @@ import signalr
 ```typescript
 import * as signalR from '@microsoft/signalr';
 ```
-in componentDidMount method
+in componentDidMount method join your hub url and join the log channel 'LogMonitor' after connection start.
 
 ```typescript
 let connection = new signalR.HubConnectionBuilder()
