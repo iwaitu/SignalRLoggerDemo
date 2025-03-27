@@ -6,10 +6,7 @@ namespace IVilson.Utils.Logger.SignalR
     public class SignalRLoggerHub : Hub
     {
         public const string HubUrl = "/loghub";
-        private readonly SignalRLoggerConfiguration _config;
-        public SignalRLoggerHub(SignalRLoggerConfiguration config) {
-            _config = config;
-        }
+        
         public async Task Broadcast(string username, string message) => await Clients.All.SendAsync("Broadcast", username, message);
         public async Task JoinGroup(string groupName)
         {
@@ -21,7 +18,7 @@ namespace IVilson.Utils.Logger.SignalR
         public override Task OnConnectedAsync()
         {
             Console.WriteLine($"{Context.ConnectionId} connected");
-            Clients.Group(_config.GroupName).SendAsync("Broadcast", $"logger ready");
+            
             return base.OnConnectedAsync();
         }
 
