@@ -9,5 +9,6 @@ namespace IVilson.Utils.Logger.SignalR
         public string GroupName { get; set; } = "LogMonitor";
         public LogLevel LogLevel { get; set; } = LogLevel.Information;
         public int EventId { get; set; } = 0;
+        public bool ListenAllLevels { get; set; } = false;
     }
 }
